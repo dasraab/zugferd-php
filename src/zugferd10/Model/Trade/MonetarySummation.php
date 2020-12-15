@@ -69,6 +69,26 @@ class MonetarySummation
     private $grandTotal;
 
     /**
+     * Total Prepaid Amount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("TotalPrepaidAmount")
+     */
+    private $prepaidTotal;
+
+    /**
+     * Due Payable Amount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("DuePayableAmount")
+     */
+    private $duePayable;
+
+    /**
      * MonetarySummation constructor.
      *
      * @param float $lineTotal
@@ -77,6 +97,8 @@ class MonetarySummation
      * @param float $taxBasisTotal
      * @param float $taxTotal
      * @param float $grandTotal
+     * @param float $prepaidTotal
+     * @param float $duePayable
      * @param string $currency
      */
     public function __construct(
@@ -86,6 +108,8 @@ class MonetarySummation
         $taxBasisTotal,
         $taxTotal,
         $grandTotal,
+        $prepaidTotal,
+        $duePayable
         $currency = 'EUR'
     ) {
         $this->lineTotal = new Amount($lineTotal, $currency);
@@ -94,6 +118,8 @@ class MonetarySummation
         $this->taxBasisTotal = new Amount($taxBasisTotal, $currency);
         $this->taxTotal = new Amount($taxTotal, $currency);
         $this->grandTotal = new Amount($grandTotal, $currency);
+        $this->prepaidTotal = new Amount($prepaidTotal, $currency);
+        $this->duePayable = new Amount($duePayable, $currency);
     }
 
     /**
@@ -190,5 +216,37 @@ class MonetarySummation
     public function setGrandTotal($grandTotal)
     {
         $this->grandTotal = $grandTotal;
+    }
+
+    /**
+     * @return Amount
+     */
+    public function getPrepaidTotal()
+    {
+        return $this->prepaidTotal;
+    }
+
+    /**
+     * @param Amount $prepaidTotal
+     */
+    public function setPrepaidTotal($prepaidTotal)
+    {
+        $this->prepaidTotal = $prepaidTotal;
+    }
+
+    /**
+     * @return Amount
+     */
+    public function getDuePayable()
+    {
+        return $this->duePayable;
+    }
+
+    /**
+     * @param Amount $duePayable
+     */
+    public function setDuePayable($duePayable)
+    {
+        $this->duePayable = $duePayable;
     }
 }
