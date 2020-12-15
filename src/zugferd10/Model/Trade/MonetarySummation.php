@@ -109,7 +109,7 @@ class MonetarySummation
         $taxTotal,
         $grandTotal,
         $prepaidTotal,
-        $duePayable
+        $duePayable,
         $currency = 'EUR'
     ) {
         $this->lineTotal = new Amount($lineTotal, $currency);
